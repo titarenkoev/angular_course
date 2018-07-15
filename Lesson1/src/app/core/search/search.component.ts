@@ -9,7 +9,13 @@ export class SearchComponent implements OnInit {
 
   constructor() { }
 
+  public searchInput:string;
+
   ngOnInit() {
+  }
+
+  searchInit(value){
+    console.log(value);
   }
 
 }

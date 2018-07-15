@@ -17,4 +17,12 @@ export class CourseListComponent implements OnInit {
     this.courseItems = this.coursesServise.getCourseItems();
   }
 
+  deleteCourse(id:number){
+    console.log(id);
+  }
+
+  loadMore()
+  {
+    console.log("load more button pressed");
+  }
 }

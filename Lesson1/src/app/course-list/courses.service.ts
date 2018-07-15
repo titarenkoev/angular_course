@@ -24,6 +24,13 @@ export class CoursesService {
         creationDate: "10.01.2018",
         duration: 100,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
+      },
+      {
+        id: 3,
+        title: "Video Course 3",
+        creationDate: "20.02.2018",
+        duration: 80,
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
       }
     ]
   }

@@ -1,10 +1,10 @@
 <div class="search-component">
     <button class="btn btn-primary" type="submit" style="float:right;">Add course</button>
 
-    <form class="form-inline">
+    <div class="form-inline">
         <label class="sr-only" for="inlineFormInputSearch">Search</label>
-        <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputSearch" placeholder="Name, Fragment or date">
+        <input [(ngModel)]="searchInput" type="text" style="margin: 0 10px 0 0" class="form-control mb-2" id="inlineFormInputSearch" placeholder="Name, Fragment or date">
 
-        <button type="submit" class="btn btn-primary mb-2">Submit</button>
-    </form>
+        <button type="submit" class="btn btn-primary mb-2" (click)="searchInit(searchInput)">Submit</button>
+    </div>
 </div>
