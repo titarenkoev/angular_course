@@ -1,4 +1,17 @@
+<!-- <app-search></app-search> -->
+<div class="search-component">
+    <button class="btn btn-primary" type="submit" style="float:right;">Add course</button>
+
+    <div class="form-inline">
+        <label class="sr-only" for="inlineFormInputSearch">Search</label>
+        <input [(ngModel)]="searchInput" type="text" style="margin: 0 10px 0 0" class="form-control mb-2" id="inlineFormInputSearch" placeholder="Name, Fragment or date">
+
+        <button type="submit" class="btn btn-primary mb-2" (click)="searchCourse(searchInput)">Submit</button>
+    </div>
+</div>
+
 <div class="content container">
-    <app-course-list-item *ngFor="let item of courseItems" [courseItem]="item" (CourseDelete)="deleteCourse($event)"></app-course-list-item>
+    <app-course-list-item *ngFor="let item of courseItems | orderBy " [courseItem]="item" (CourseDelete)="deleteCourse($event)"></app-course-list-item>
+    <div *ngIf="courseItems.length < 1" class="alert alert-primary">No data. Feel free to add new course</div>
 </div>
 <button class="btn btn-primary" type="submit" (click)="loadMore()">Load more</button>

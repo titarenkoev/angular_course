@@ -5,6 +5,6 @@
         <label class="sr-only" for="inlineFormInputSearch">Search</label>
         <input [(ngModel)]="searchInput" type="text" style="margin: 0 10px 0 0" class="form-control mb-2" id="inlineFormInputSearch" placeholder="Name, Fragment or date">
 
-        <button type="submit" class="btn btn-primary mb-2" (click)="searchInit(searchInput)">Submit</button>
+        <button type="submit" class="btn btn-primary mb-2" (click)="searchInit($event, searchInput)">Submit</button>
     </div>
 </div>
