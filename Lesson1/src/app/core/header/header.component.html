@@ -1,4 +1,5 @@
 <div class="header" style="height: 100px;">
-    <div style="float:right;">User Login <button type="button" class="btn btn-primary">Logoff</button></div>
+    <div style="float:right;" *ngIf=(currentUser)>{{currentUser.firstName}} {{currentUser.lastName}}<button type="button" class="btn btn-primary" (click)="onLogout()">Log out</button></div>
+    <!-- <div style="float:right;" *ngIf=(!currentUser)><button type="button" class="btn btn-primary">Log in</button></div> -->
     <app-logo></app-logo>
 </div>

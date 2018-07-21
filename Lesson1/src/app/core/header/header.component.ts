@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../../auth-service.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private AuthService:AuthServiceService) { }
+
+  public currentUser: User;
 
   ngOnInit() {
+    //this.AuthService.CreateFakeUser();//TEMPORARY for task!!!
+
+    if(this.AuthService.IsAuthenticated())
+    {
+      this.currentUser = this.AuthService.GetUserInfo();
+    }
+  }
+
+  public onLogout()
+  {
+    this.AuthService.Logout();
   }
 }

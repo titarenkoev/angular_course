@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from 'src/app/course-list/course-list-item.model';
 import { CoursesService } from '../courses.service';
 import { SearchPipePipe } from '../../search-pipe.pipe';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-course-list',
@@ -22,7 +23,9 @@ export class CourseListComponent implements OnInit {
   public searchInput:string;
 
   deleteCourse(id:number){
-    console.log(id);
+    console.log("delete parent emit ckick " + id );
+    if(!id) {return;};
+    this.coursesServise.RemoveCourse(id);
   }
 
   searchCourse(value:string){
