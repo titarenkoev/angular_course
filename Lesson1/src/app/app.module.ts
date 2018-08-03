@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { CourseListModule } from './course-list/course-list.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LoginPageModule} from './login-page/login-page.module'
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {LoginPageModule} from './login-page/login-page.module'
     BrowserModule,
     CoreModule,
     CourseListModule,
-    LoginPageModule
+    LoginPageModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

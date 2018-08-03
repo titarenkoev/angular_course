@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from 'src/app/course-list/course-list-item.model';
-import { CoursesService } from '../courses.service';
-import { SearchPipePipe } from '../../search-pipe.pipe';
+import { CoursesService } from '../../core/courses.service';
+import { SearchPipePipe } from '../../shared/search-pipe.pipe';
 import {MatDialogRef} from '@angular/material';
 
 @Component({
