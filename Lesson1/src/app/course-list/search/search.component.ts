@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  searchInit(){
+  searchInit($event: any){
     console.log(this.searchInput);
     this.CourseSearch.emit(this.searchInput);
   }

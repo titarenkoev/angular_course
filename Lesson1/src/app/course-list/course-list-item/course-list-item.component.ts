@@ -1,33 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { CourseListItem } from '../course-list-item.model';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
 
 @Component({
   selector: 'app-course-list-item',
   templateUrl: './course-list-item.component.html',
-  styleUrls: ['./course-list-item.component.css']
+  styleUrls: ['./course-list-item.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseListItemComponent implements OnInit {
   @Input() public courseItem: CourseListItem;
   @Output() CourseDelete: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor(private dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-  onClick(){
-    console.log("delete click " + this.courseItem.id);
-      const dialogConfig = new MatDialogConfig();
-      let dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, dialogConfig);
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog closed: ${result}`);
-        if(result == "Confirm")
-        {
-          this.CourseDelete.emit(this.courseItem.id);
-        }
-      });
+  onClick($event: any){
+    this.CourseDelete.emit(this.courseItem.id);
   }
 
 }

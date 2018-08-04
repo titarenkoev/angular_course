@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from 'src/app/course-list/course-list-item.model';
 import { CoursesService } from '../../core/courses.service';
 import { SearchPipePipe } from '../../shared/search-pipe.pipe';
-import {MatDialogRef} from '@angular/material';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
+
 
 @Component({
   selector: 'app-course-list',
@@ -14,7 +16,7 @@ export class CourseListComponent implements OnInit {
   private allCourseItems: CourseListItem[] = []
   public courseItems: CourseListItem[] = []
 
-  constructor(private coursesServise: CoursesService, private searchPipe: SearchPipePipe) { }
+  constructor(private coursesServise: CoursesService, private searchPipe: SearchPipePipe, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.allCourseItems = this.coursesServise.getCourseItems();
@@ -23,9 +25,16 @@ export class CourseListComponent implements OnInit {
   public searchInput:string;
 
   deleteCourse(id:number){
-    console.log("delete parent emit ckick " + id );
-    if(!id) {return;};
-    this.coursesServise.RemoveCourse(id);
+    console.log("delete click " + id);
+      const dialogConfig = new MatDialogConfig();
+      let dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, dialogConfig);
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog closed: ${result}`);
+        if(result == "Confirm")
+        {
+          this.coursesServise.RemoveCourse(id);
+        }
+      });
   }
 
   searchCourse(value:string){

@@ -5,15 +5,22 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoComponent } from './logo/logo.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { DurationFormatPipe } from './duration-format.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
-  declarations: [HeaderComponent, FooterComponent, LogoComponent, BreadcrumbsComponent],
+  declarations: [
+    HeaderComponent, 
+    FooterComponent, 
+    LogoComponent, 
+    BreadcrumbsComponent,
+    DurationFormatPipe
+  ],
   exports: [
-    HeaderComponent, FooterComponent, BreadcrumbsComponent
+    HeaderComponent, FooterComponent, BreadcrumbsComponent, DurationFormatPipe
   ]
 })
 export class SharedModule { }
