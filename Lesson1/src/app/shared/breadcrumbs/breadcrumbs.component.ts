@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../core/auth-service.service';
+import { ActivatedRoute, Router, ActivatedRouteSnapshot, UrlSegment, NavigationEnd } from '@angular/router';
+import { CoursesService } from '../../core/courses.service';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -8,9 +10,25 @@ import { AuthServiceService } from '../../core/auth-service.service';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  constructor(private authService: AuthServiceService) { }
+  breadcrumbs: {
+    name: string;
+    url: string
+  }[] = [];
+
+  constructor(private authService: AuthServiceService, private router: Router, private activatedRoute: ActivatedRoute, private courseSrvice: CoursesService) { }
 
   ngOnInit() {
+   this.breadcrumbs.push({name:"Courses List", url:"/"}); 
+    this.activatedRoute.params.subscribe((data) => {
+      if (!isNaN(Number(data['id'])))
+      {
+        this.breadcrumbs.push({name:this.courseSrvice.GetCourseById(data['id']).title, url:""}); 
+      }
+      else if (data['id'] == "new")
+      {
+        this.breadcrumbs.push({name:"New page", url:""}); 
+      }
+    })
   }
 
   public isAuth()

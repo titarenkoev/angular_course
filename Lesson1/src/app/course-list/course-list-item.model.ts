@@ -4,5 +4,6 @@ export interface CourseListItem {
     creationDate: Date;
     duration: number;
     topRated: boolean;
-    description: string
+    description: string;
+    authors: string;
 }

@@ -1,23 +1,30 @@
-<div class="col-md-10">
-    <div class="form-group">
-        <label>Title</label>
-        <input type="text" class="form-control" placeholder="Title" [(ngModel)]="model.title">
+<div class="container">
+    <app-header></app-header>
+    <app-breadcrumbs></app-breadcrumbs>
+
+    <div class="col-md-10">
+        <div class="form-group">
+            <label>Title *</label>
+            <input type="text" class="form-control" placeholder="Title" [(ngModel)]="model.title">
+        </div>
+        <div class="form-group">
+            <label>Description *</label>
+            <textarea type="text" class="form-control" [(ngModel)]="model.description"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Date *</label>
+            <app-date-input [dateValue]="model.creationDate" (dateChange)="updateDate($event)"></app-date-input>
+        </div>
+        <div class="form-group">
+            <label style="display: block;">Duration *</label>
+            <app-duration-input [durationValue]="model.duration" (durationChange)="updateDuration($event)"></app-duration-input>
+        </div>
+        <div class="form-group">
+            <label>Authors *</label>
+            <app-authors-input [authorsValue]="model.authors" (authorsChange)="updateAuthors($event)"></app-authors-input>
+        </div>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button><button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
     </div>
-    <div class="form-group">
-        <label>Description</label>
-        <textarea type="text" class="form-control" [(ngModel)]="model.description"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Date</label>
-        <app-date-input [dateValue]="model.creationDate"></app-date-input>
-    </div>
-    <div class="form-group">
-        <label style="display: block;">Duration</label>
-        <app-duration-input [durationValue]="model.duration"></app-duration-input>
-    </div>
-    <div class="form-group">
-        <label>Authors</label>
-        <app-authors-input></app-authors-input>
-    </div>
-    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button><button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+    <app-footer></app-footer>
 </div>

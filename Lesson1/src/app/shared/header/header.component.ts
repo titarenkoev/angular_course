@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../core/auth-service.service';
 import { User } from '../user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +10,24 @@ import { User } from '../user.model';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private AuthService:AuthServiceService) { }
+  constructor(private router: Router, private AuthService:AuthServiceService) { }
 
   public currentUser: User;
 
   ngOnInit() {
-    //this.AuthService.CreateFakeUser();//TEMPORARY for task!!!
 
     if(this.AuthService.IsAuthenticated())
     {
       this.currentUser = this.AuthService.GetUserInfo();
+    }
+    else {
+      this.router.navigate(['/login']);
     }
   }
 
   public onLogout()
   {
     this.AuthService.Logout();
+    this.router.navigate(['/login']);
   }
 }

@@ -6,7 +6,6 @@ import { CourseItemBorderDirective } from '../shared/course-item-border.directiv
 import { OrderByPipe } from '../shared/order-by.pipe';
 import { SearchPipePipe } from '../shared/search-pipe.pipe';
 import { SearchComponent } from './search/search.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from './confirm-delete-dialog/confirm-delete-dialog.component';
 import { SharedModule } from '../shared/shared.module';
@@ -14,7 +13,6 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
     MatDialogModule,
     SharedModule
   ],

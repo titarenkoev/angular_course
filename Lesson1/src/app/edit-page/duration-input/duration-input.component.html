@@ -1,2 +1,2 @@
-<input type="text" class="form-control" placeholder="Duration" [(ngModel)]="durationValue" style="display:inline-block; width:200px" />
+<input type="text" class="form-control" placeholder="Duration" [(ngModel)]="durationValue" (ngModelChange)="change($event)" style="display:inline-block; width:200px" />
 <span class="duration">  {{durationValue | durationFormat}}</span>

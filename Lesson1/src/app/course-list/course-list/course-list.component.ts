@@ -4,7 +4,7 @@ import { CoursesService } from '../../core/courses.service';
 import { SearchPipePipe } from '../../shared/search-pipe.pipe';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { ConfirmDeleteDialogComponent } from '../confirm-delete-dialog/confirm-delete-dialog.component';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-list',
@@ -22,6 +22,7 @@ export class CourseListComponent implements OnInit {
     this.allCourseItems = this.coursesServise.getCourseItems();
     this.courseItems = this.coursesServise.getCourseItems();
   }
+
   public searchInput:string;
 
   deleteCourse(id:number){

@@ -1,1 +1,1 @@
-<input type="text" class="form-control" placeholder="Date" [(ngModel)]="dateValue">
+<input type="text" class="form-control" placeholder="Date" [ngModel]="dateValue | date:'MM/dd/yyyy'" (ngModelChange)="change($event)" />

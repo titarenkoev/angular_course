@@ -10,7 +10,8 @@ import { CourseListItem } from '../course-list/course-list-item.model';
 export class CoursesService {
 
   constructor() {
-    this.courseList = this.baseCourseList;
+    ///this.courseList = this.baseCourseList;
+    this.courseList = JSON.parse(JSON.stringify(this.baseCourseList));
     console.log ("service course constructor init")
    }
 
@@ -21,6 +22,7 @@ export class CoursesService {
       creationDate: new Date("October 13, 2014 22:34:17"),
       duration: 30,
       topRated: true,
+      authors: "",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
     },
     {
@@ -29,6 +31,7 @@ export class CoursesService {
       creationDate: new Date("November 13, 2018 22:34:17"),
       duration: 100,
       topRated: false,
+      authors: "",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
     },
     {
@@ -37,6 +40,7 @@ export class CoursesService {
       creationDate: new Date("July 13, 2018 22:34:17"),
       duration: 80,
       topRated: true,
+      authors: "",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
     },
     {
@@ -45,6 +49,7 @@ export class CoursesService {
       creationDate: new Date("July 01, 2018 22:34:17"),
       duration: 60,
       topRated: false,
+      authors: "",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
     }
   ];
@@ -68,7 +73,8 @@ export class CoursesService {
       creationDate: new Date(),
       duration: durationNew,
       topRated: true,
-      description: descriptionNew
+      description: descriptionNew,
+      authors:""
     });
   }
 
@@ -77,13 +83,14 @@ export class CoursesService {
     return this.getCourseItems().find(e =>  e.id == id);
   }
 
-  public UpdateCourse(id:number, newTitle: string, newDuration: number, newDescription: string, newTopRated:boolean)
+  public UpdateCourse(itemNew:CourseListItem)
   {
-    var item = this.GetCourseById(id);
-    item.title = newTitle;
-    item.duration = newDuration;
-    item.description = newDescription;
-    item.topRated = newTopRated;
+    var item = this.GetCourseById(itemNew.id);
+    item.title = itemNew.title;
+    item.duration = itemNew.duration;
+    item.description = itemNew.description;
+    item.creationDate = itemNew.creationDate;
+    item.authors = itemNew.authors;
   }
 
   public RemoveCourse(id:number){

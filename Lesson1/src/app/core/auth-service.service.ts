@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../shared/user.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,27 +11,14 @@ export class AuthServiceService {
 
   private token:string = "how_to_create_new_token_easy";
 
-  public CreateFakeUser() //TEMPORARY!!!
-  {
-    var user:User = {
-      id:2,
-      firstName: 'Anna',
-      lastName: 'Simpson'
-  }
-   var tempToken = "temp_token";
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    localStorage.setItem('token', tempToken);
-    console.log("Login Service, CreateFakeUser.");
-  }
-
   public Login(username: string, password: string) {
 
     if(username && password)
     {
       var user:User = {
         id:1,
-        firstName: 'Jakob',
-        lastName: 'Anderson'
+        firstName: username,
+        lastName: ''
     }
     localStorage.setItem('currentUser', JSON.stringify(user));
     localStorage.setItem('token', this.token);
@@ -40,10 +28,8 @@ export class AuthServiceService {
 
   public Logout ()
   {
-    console.log("logout: " + localStorage.getItem('token'));
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
-    console.log("Login Service. Logout")
   }
 
   public IsAuthenticated() : boolean

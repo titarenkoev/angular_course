@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseListItem } from '../../course-list/course-list-item.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CoursesService } from '../../core/courses.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -8,27 +10,71 @@ import { CourseListItem } from '../../course-list/course-list-item.model';
 })
 export class EditPageComponent implements OnInit {
 
-  constructor() { }
+  model: CourseListItem;
 
-  model: CourseListItem = {
-    id: 10,
-    title: "Video Course 10 title",
-    creationDate: new Date("October 13, 2014 22:34:17"),
-    duration: 88,
-    topRated: true,
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et"
-  };
+  constructor(private route:ActivatedRoute, private router: Router, private courseService: CoursesService) { }
 
   ngOnInit() {
+    this.route.params.subscribe((data) => {
+        if (!isNaN(Number(data['id'])))
+        {
+          var course = JSON.parse(JSON.stringify(this.courseService.GetCourseById(data['id'])));
+          if(course)
+          {
+            this.model = course;
+          }
+          else{
+            ///redirect 404
+            this.router.navigate(['/404']);
+          }
+        }
+        else if (data['id'] == "new")
+        {
+          this.model = {
+            id: 0,
+            title: "",
+            creationDate: new Date(),
+            duration: 0,
+            topRated: true,
+            description: "",
+            authors:""
+          };
+        }
+        else{
+          ///redirect 404
+          this.router.navigate(['/404']);
+        }
+
+    });
   }
 
   onCancel()
   {
-    console.log("cancel click");
+    if(this.model.id !== 0)
+    {
+      this.model = this.courseService.GetCourseById(this.model.id);
+    }
+    this.router.navigate(['/courses']);
   }
 
   onSubmit()
   {
-    console.log("submit click");
+    this.courseService.UpdateCourse(this.model);
+    this.router.navigate(['/courses']);
+  }
+
+  updateDuration(newValue: number)
+  {
+    this.model.duration = newValue;
+  }
+
+  updateAuthors (newValue: string)
+  {
+    this.model.authors = newValue;
+  }
+
+  updateDate (newValue: Date)
+  {
+    this.model.creationDate = newValue;
   }
 }

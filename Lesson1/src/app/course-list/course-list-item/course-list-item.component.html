@@ -8,7 +8,7 @@
         <p>{{courseItem.description}}</p>
     </div>
     <div class="col-md-2">
-        <button class="btn btn-primary" type="submit">Edit</button><br>
+        <button class="btn btn-primary" type="submit" [routerLink]="['/courses', courseItem.id]">Edit</button><br>
         <button class="btn btn-primary" type="submit" (click)="onClick($event)">Delete</button><br>
     </div>
 
